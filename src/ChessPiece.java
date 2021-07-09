@@ -6,7 +6,7 @@ abstract class ChessPiece {
         this.color = color;
     }
 
-    abstract String getColor();
-    abstract boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
-    abstract String getSymbol();
+    abstract public String getColor();
+    abstract public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
+    abstract public String getSymbol();
 }
