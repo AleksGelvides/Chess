@@ -39,7 +39,7 @@ public class Horse extends ChessPiece{
                 {Line +1, Column -2},
                 {Line +1, Column +2}
         };
-        for(int i = 0; i < toPosition[0].length; i++){
+        for(int i = 0; i < toPosition.length; i++){
             if (toPosition[i][0] == toLine && toPosition[i][1] == toColumn){
                 result = true;
             } else {

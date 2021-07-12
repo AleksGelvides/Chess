@@ -1,5 +1,5 @@
-public class King extends ChessPiece {
-    public King(String color) {
+public class Queen extends ChessPiece {
+    public Queen(String color) {
         super(color);
     }
 
@@ -10,7 +10,7 @@ public class King extends ChessPiece {
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (chessBoard.checkPos(toLine) && chessBoard.checkPos(toColumn) && (line != toLine || column != toColumn)) {
+        if (chessBoard.checkPos(toLine) && chessBoard.checkPos(toColumn)) {
             if ((chessBoard.board[toLine][toColumn] == null || !chessBoard.board[toLine][toColumn].getColor().equals(this.getColor())) && moveTo(line, column, toLine, toColumn)) {
                 return true;
             }
@@ -20,29 +20,16 @@ public class King extends ChessPiece {
 
     @Override
     public String getSymbol() {
-        return "K";
+        return "Q";
     }
 
     private boolean moveTo(int line, int column, int toLine, int toColumn) {
-        boolean result = true;
-        int[][] toPosition = new int[][]{
-                {line - 1, column - 1},
-                {line + 1, column - 1},
-                {line - 1, column + 1},
-                {line + 1, column + 1},
-                {line + 0, column + 1},
-                {line + 1, column + 0},
-                {line + 0, column - 1},
-                {line - 1, column + 0}
-        };
-        for (int i = 0; i < toPosition.length; i++) {
-            if (toPosition[i][0] == toLine && toPosition[i][1] == toColumn) {
-                result = true;
-                break;
-            } else
-                result = false;
-        }
-        return result;
+        if (Math.abs(toLine - line) == Math.abs(toColumn - column)){
+            return true;
+        } else if((column != toColumn && line == toLine) || (column == toColumn && line != toLine)){
+            return true;
+        } else
+            return false;
     }
 
     public boolean isUnderAttack(ChessBoard chessBoard, int line, int column) {

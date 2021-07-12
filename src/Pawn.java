@@ -17,7 +17,7 @@ public class Pawn extends ChessPiece {
             return moveTo(line, column, toLine, toColumn);
         } else if (oneStep != 0 && (toLine != (line + 2) || toLine != (line - 2)) && chessBoard.checkPos(toLine) && toColumn == column) {
             return moveTo(line, column, toLine, toColumn);
-        } else if (oneStep != 0 && chessBoard.checkPos(toColumn)){
+        } else if (chessBoard.checkPos(toLine) && chessBoard.checkPos(toColumn) && chessBoard.board[toLine][toColumn] != null && oneStep != 0 && chessBoard.checkPos(toColumn)){
             if(!chessBoard.board[toLine][toColumn].getColor().equals(this.getColor())){
             return attack(line,column,toLine,toColumn);
             }
@@ -69,7 +69,7 @@ public class Pawn extends ChessPiece {
                     {line + 1, column + 0},
             };
         }
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < toPosition.length; i++) {
             if (toPosition[i][0] == toLine && toPosition[i][1] == toColumn) {
                 result = true;
                 break;
